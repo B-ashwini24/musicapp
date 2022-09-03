@@ -72,15 +72,15 @@ const [temp,setTemp]=useState([])
 
 const songdata=()=>{
   axios.get(`http://localhost:9003/song/getdata`).then(response=>{
-          setData(response['data'].data)
-         // console.log(data)
-      }).catch(err=>{
-      console.log(err)
-      })
+    setData(response['data'].data)
+   // console.log(data)
+}).catch(err=>{
+console.log(err)
+})
 }
 
 const artistdata=()=>{
-  axios.get(`http://localhost:9003/artist/getsongs`).then(response=>{
+ axios.get(`http://localhost:9003/artist/getsongs`).then(response=>{
     setData1(response['data'].data)
    
     
@@ -88,11 +88,38 @@ const artistdata=()=>{
     }).catch(err=>{
     console.log(err)
     })
-
 }
+const deleteData=async()=>{
+  const a=await axios.delete(`http://localhost:9003/artist/deletedata`).then(response=>{
+    
+      
+    }).catch(err=>{
+    console.log(err)
+    })
+    
+
   
+}
+  // axios.delete(`http://localhost:9003/artist/deletedata`).then(response=>{
+    
+      
+      // }).catch(err=>{
+      // console.log(err)
+      // })
+      useEffect(()=>{
+        axios.get(`http://localhost:9003/artist/getall`).then(response=>{
+   
+      
+        }).catch(err=>{
+        console.log(err)
+        })
+      })
     useEffect(()=>{
+        //deleteData()
+        
         songdata()
+       
+       
         artistdata()
         axios.put(`http://localhost:9003/song/editrating`,editdata).then(response=>{
   
@@ -100,7 +127,7 @@ const artistdata=()=>{
       }).catch(err=>{
       console.log(err)
       })
-      },[editdata,data])
+      },[editdata])
  
   
 
@@ -116,11 +143,11 @@ const changeHandler=(item_id,item_rating)=>{
  
 }
   return (
-    <div style={{backgroundColor:'#009393'}}>
+    <div style={{backgroundImage: 'linear-gradient(to right, #c6ffdd, #fbd786, #f7797d)'}}>
         <div style={{display:'flex',justifyContent:'space-between',marginRight:'40px'}}> <h1>Top 10 Songs</h1><button onClick={()=>navigate('/song')}>+ Add song</button></div>
            
         <div style={{marginTop:'20px'}}>
-    <TableContainer component={Paper} style={{backgroundColor:'#009393'}}>
+    <TableContainer component={Paper} style={{backgroundImage: 'linear-gradient(to right, #c6ffdd, #fbd786, #f7797d)'}}>
     
       <Table sx={{ minWidth: 700 }} aria-label="customized table">
         <TableHead>
@@ -173,10 +200,10 @@ const changeHandler=(item_id,item_rating)=>{
       
     </TableContainer>
     </div>
-    <div style={{display:'flex',justifyContent:'space-between',marginRight:'40px',marginTop:'40px'}}> <h1>Top 10 Artist</h1></div>
+    <div style={{display:'flex',justifyContent:'space-between',marginRight:'40px',marginTop:'40px'}}> <h1>Top 10 Artist</h1><button onClick={()=>navigate('/artist')}>+ Add Artist</button></div>
            
         <div style={{marginTop:'20px'}}>
-    <TableContainer component={Paper}  style={{backgroundColor:'#009395'}}>
+    <TableContainer component={Paper}  style={{backgroundImage: 'linear-gradient(to right, #c6ffdd, #fbd786, #f7797d)'}}>
     
       <Table sx={{ minWidth: 700,border:'1 black solid' }} aria-label="customized table">
         <TableHead>

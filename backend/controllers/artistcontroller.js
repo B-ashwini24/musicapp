@@ -1,6 +1,7 @@
 
 
 
+const { Collection } = require("mongoose")
 const Artist=require("../models/artist")
 
 const Artistsongs=require("../models/artistsongs")
@@ -40,17 +41,24 @@ const getdata=(req,res)=>{
 }
 
 const getall=async(req,res)=>{
+
+    const a=await Artistsongs.deleteMany().then(result=>{
+        console.log("dlee")
+        res.send({
+            message:"deleted"
+        })
+    })
     let arr=[];
     let obj={
         Aname:"",
        
         song:""
     }
-    Artist.find().then(result=>{
+  const b= await Artist.find().then(result=>{
        // console.log(result)
         result.map(ele=>{
             console.log(ele.Aname)
-            Song.find({Aname:ele.Aname}).then(result1=>{
+           Song.find({Aname:ele.Aname}).then(result1=>{
                // console.log(result1)
                 let str=""
                 let artist=ele.Aname;
@@ -85,7 +93,16 @@ const getall=async(req,res)=>{
   
 }
 
+const deleteData=(req,res)=>{
+    console.log("j")
+    Artistsongs.deleteMany().then(result=>{
+        console.log("dlee")
+        res.send({
+            message:"deleted"
+        })
+    })
 
+}
    
 const getSongs=(req,res)=>{
     //console.log("inside songs",req.params.Aname)
@@ -102,6 +119,6 @@ const getSongs=(req,res)=>{
 
 module.exports={
     savedata,
-    getdata,getSongs,getall
+    getdata,getSongs,getall,deleteData
     
 }

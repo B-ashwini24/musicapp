@@ -1,24 +1,39 @@
 
 import './App.css';
 import { Routes, Route, Link } from "react-router-dom";
-
+import SignUp from './pages/signup/SignUp';
+import Login from './pages/login/Login';
+import Adminroute from './components/Adminroute/Adminroute';
+import { useSelector } from 'react-redux';
+import Navbar from './components/Navbar'
+import Custroute from './components/Custroute/Custroute';
+import { useEffect, useState } from 'react';
+import Nav from './components/Nav';
 import Home from './components/Home';
- import Navbar from './components/Navbar';
-import Artist from './components/Artist';
-import Song from './components/Song';
-
 function App() {
+  const userInfo = useSelector(state => state)
+  console.log(userInfo)
+  const [token, setToken] = useState(null)
+
+  useEffect(() => {
+    setToken(JSON.parse(localStorage.getItem('token')))
+  }, [userInfo])
+
   return (
-    <div className="App">
-       <Navbar/> 
-     <Routes>
-         <Route path="/artist" element={<Artist />} />
-        <Route path="/home" element={<Home/>} />
-        <Route path="/song" element={<Song/>} />
-      
+    <>
+      {/* <Navbar /> */}
+      <Nav/>
+      <Routes>
+        <Route path='/' element={<Home />} />
+        <Route path='/login' element={<Login />} />
+        <Route path='/signup' element={<SignUp />} />
+       
       </Routes>
-     
-    </div>
+      {token?.isAdmin ?
+            <Adminroute />:
+          <Custroute />
+        }
+    </>
   );
 }
 

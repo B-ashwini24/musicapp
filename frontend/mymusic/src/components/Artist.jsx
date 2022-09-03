@@ -31,9 +31,9 @@ const Artist = () => {
 
 
   return (
-     <Stack direction='row' spacing={2} justifyContent='space-between'>
-        
-        <Box sx={{backgroundColor:'white',marginTop:'20px',height:'660px'}} flex={4}>
+    //  <Stack direction='row' spacing={2} justifyContent='space-between'>
+        <div style={{backgroundImage: 'linear-gradient(to right, #c6ffdd, #fbd786, #f7797d)'}}>
+        <Box sx={{marginTop:'20px',marginLeft:'200px',height:'660px'}} flex={4}>
  <div style={{ height:'50px',display:'flex',flexDirection:'column',marginTop:'10px',justifyContent:'space-between'}}>
     <h2 style={{color:'blue'}}>Add Artist</h2>  
 
@@ -61,8 +61,8 @@ const Artist = () => {
     
   </Box></div>
         </Box>
-     </Stack>
    
+   </div>
   )
 }
 

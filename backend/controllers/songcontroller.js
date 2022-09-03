@@ -58,7 +58,7 @@ const editrating=(req,res)=>{
     })
 }
 const getdata=(req,res)=>{
-    Song.find().then(result=>{
+    Song.find().sort({rating:-1}).then(result=>{
         res.send({
             
             data:result
