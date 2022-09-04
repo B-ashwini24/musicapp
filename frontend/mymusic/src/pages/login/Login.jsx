@@ -78,8 +78,10 @@ const Login = () => {
     };
 
     return (
-       
-        <ThemeProvider theme={theme}>
+        
+    <div style={{display:'flex',flexDirection:'row'}}>
+        <div><img  style={{height:'50',width:'700px'}} src="https://th.bing.com/th/id/OIP.VJguKOlfZAkRVh5gFDNW5QHaEK?pid=ImgDet&rs=1"/></div>
+        <div style={{marginLeft:'150px', marginTop:'100px',height:'300px',Width:'300px'}}> <ThemeProvider theme={theme}>
             <Container component="main" maxWidth="xs">
                 <CssBaseline />
                 <Box
@@ -140,7 +142,8 @@ const Login = () => {
                 <Copyright sx={{ mt: 8, mb: 4 }} />
             </Container>
         </ThemeProvider>
-       
+        </div>
+       </div>
     );
 }
 

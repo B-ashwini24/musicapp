@@ -31,8 +31,9 @@ const Artist = () => {
 
 
   return (
-    //  <Stack direction='row' spacing={2} justifyContent='space-between'>
         <div style={{backgroundImage: 'linear-gradient(to right, #c6ffdd, #fbd786, #f7797d)'}}>
+           <div><img  style={{height:'150px',width:'100%'}} src="https://th.bing.com/th/id/OIP.VJguKOlfZAkRVh5gFDNW5QHaEK?pid=ImgDet&rs=1"/></div>
+        
         <Box sx={{marginTop:'20px',marginLeft:'200px',height:'660px'}} flex={4}>
  <div style={{ height:'50px',display:'flex',flexDirection:'column',marginTop:'10px',justifyContent:'space-between'}}>
     <h2 style={{color:'blue'}}>Add Artist</h2>  

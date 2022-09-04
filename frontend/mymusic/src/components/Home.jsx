@@ -61,7 +61,11 @@ const Home = () => {
     rating:0,
   
 })
-var arr=[]
+const [state,setState] = useState({
+  name:''
+  
+})
+// var arr=[]
 const [editdata1,setEditdata1]=useState({
   Aname:"",
   dob:"",
@@ -71,12 +75,12 @@ const [editdata1,setEditdata1]=useState({
 const [temp,setTemp]=useState([])
 
 const songdata=()=>{
-  axios.get(`http://localhost:9003/song/getdata`).then(response=>{
-    setData(response['data'].data)
-   // console.log(data)
-}).catch(err=>{
-console.log(err)
-})
+  alert(state.name)
+  
+}
+const handleChange=(e)=>{
+  
+  setState({...state,[e.target.name]:e.target.value})
 }
 
 const artistdata=()=>{
@@ -89,36 +93,24 @@ const artistdata=()=>{
     console.log(err)
     })
 }
-const deleteData=async()=>{
-  const a=await axios.delete(`http://localhost:9003/artist/deletedata`).then(response=>{
-    
-      
-    }).catch(err=>{
-    console.log(err)
-    })
-    
 
-  
-}
-  // axios.delete(`http://localhost:9003/artist/deletedata`).then(response=>{
-    
-      
-      // }).catch(err=>{
-      // console.log(err)
-      // })
-      useEffect(()=>{
-        axios.get(`http://localhost:9003/artist/getall`).then(response=>{
+ 
+
+    useEffect(()=>{
+      axios.get(`http://localhost:9003/song/getdata/?name=${state.name}`).then(response=>{
+    setData(response['data'].data)
+   // console.log(data)
+}).catch(err=>{
+console.log(err)
+})
+      //songdata()
+      axios.get(`http://localhost:9003/artist/getall`).then(response=>{
    
       
-        }).catch(err=>{
-        console.log(err)
-        })
+      }).catch(err=>{
+      console.log(err)
       })
-    useEffect(()=>{
-        //deleteData()
-        
-        songdata()
-       
+     
        
         artistdata()
         axios.put(`http://localhost:9003/song/editrating`,editdata).then(response=>{
@@ -127,13 +119,15 @@ const deleteData=async()=>{
       }).catch(err=>{
       console.log(err)
       })
-      },[editdata])
+
+
+      },[editdata,state,data])
  
   
 
 
 const changeHandler=(item_id,item_rating)=>{
-  alert(item_rating)
+  //alert(item_rating)
   setEditdata({
     
     rating:item_rating,
@@ -144,7 +138,12 @@ const changeHandler=(item_id,item_rating)=>{
 }
   return (
     <div style={{backgroundImage: 'linear-gradient(to right, #c6ffdd, #fbd786, #f7797d)'}}>
-        <div style={{display:'flex',justifyContent:'space-between',marginRight:'40px'}}> <h1>Top 10 Songs</h1><button onClick={()=>navigate('/song')}>+ Add song</button></div>
+       
+        <div><img  style={{height:'150px',width:'100%'}} src="https://th.bing.com/th/id/OIP.VJguKOlfZAkRVh5gFDNW5QHaEK?pid=ImgDet&rs=1"/></div>
+        <div style={{marginLeft:'100px'}}>
+      <label style={{color:'blue',fontSize:'large'}}>Search Artist</label>&nbsp;&nbsp;<input type="text" name='name' style={{width:'70%',height:'50px',backgroundColor:'beige',marginTop:'20px',borderRadius:'10px' ,marginRight:'200px'}} placeholder='Search artistname here..' value={state.name} onChange={handleChange}/>
+   </div><br/>
+        <div style={{display:'flex',justifyContent:'space-between',marginRight:'40px'}}> <h1 style={{marginLeft:'20px'}}>Top 10 Songs</h1><button style={{backgroundColor:'pink'}} onClick={()=>navigate('/song')}>+ Add song</button></div>
            
         <div style={{marginTop:'20px'}}>
     <TableContainer component={Paper} style={{backgroundImage: 'linear-gradient(to right, #c6ffdd, #fbd786, #f7797d)'}}>

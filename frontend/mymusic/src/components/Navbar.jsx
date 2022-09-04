@@ -1,6 +1,6 @@
 import React from 'react'
 import { Menu } from 'antd';
-import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import MusicNoteIcon from '@mui/icons-material/MusicNote';
 import SearchIcon from '@mui/icons-material/Search';
 import { styled, alpha } from '@mui/material/styles';
 import AppBar from '@mui/material/AppBar';
@@ -8,6 +8,7 @@ import InputBase from '@mui/material/InputBase';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import LocalPhoneIcon from '@mui/icons-material/LocalPhone';
 import { useNavigate } from 'react-router-dom';
+import Login from "../pages/login/Login"
 
 
 const Navbar = () => {
@@ -58,20 +59,23 @@ const Navbar = () => {
     <nav class="navbar navbar-expand-lg bg-light">
   <div class="container-fluid" style={{color:'blue'}}>
     <a class="navbar-brand" href="#" style={{color:'blue'}}>My Music</a>
+    <MusicNoteIcon/>
+    <MusicNoteIcon/>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav">
+      
+    </div>
+    <ul class="navbar-nav">
         <li class="nav-item">
           <a class="nav-link active" style={{color:'blue'}} aria-current="page" href="/home">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" style={{color:'blue'}} href="/artist">ARtist</a>
+          <a class="nav-link" style={{color:'blue'}} href="/login">Login</a>
         </li>
        
       </ul>
-    </div>
   <Search>
             <SearchIconWrapper>
               <SearchIcon />

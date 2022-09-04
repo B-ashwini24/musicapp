@@ -42,12 +42,6 @@ const getdata=(req,res)=>{
 
 const getall=async(req,res)=>{
 
-    const a=await Artistsongs.deleteMany().then(result=>{
-        console.log("dlee")
-        res.send({
-            message:"deleted"
-        })
-    })
     let arr=[];
     let obj={
         Aname:"",
@@ -55,14 +49,11 @@ const getall=async(req,res)=>{
         song:""
     }
   const b= await Artist.find().then(result=>{
-       // console.log(result)
         result.map(ele=>{
             console.log(ele.Aname)
            Song.find({Aname:ele.Aname}).then(result1=>{
-               // console.log(result1)
                 let str=""
                 let artist=ele.Aname;
-              //  let bdate=ele.dob;
                 result1.map(ele1=>{
                  
                     if(ele1.song)
@@ -77,11 +68,11 @@ const getall=async(req,res)=>{
                     obj.dob=ele.dob,
                     obj.song=str
               
-                  console.log(obj)
-              
-                Artistsongs.insertMany(obj).then(result=>{
-                     console.log("inserted")
-                 })
+                Artistsongs.updateMany({Aname:obj.Aname},   
+                {$set:{Aname:obj.artist,dob:obj.dob,song:obj.song}},  
+                {upsert:true}).then(result=>{
+                         console.log("inserted")
+                     })  
             })
            
         })

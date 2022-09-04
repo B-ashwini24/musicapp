@@ -58,7 +58,12 @@ const editrating=(req,res)=>{
     })
 }
 const getdata=(req,res)=>{
-    Song.find().sort({rating:-1}).then(result=>{
+    const {name} = req.query
+        let obj={}
+      if(name){
+        obj.Aname = {$regex:name, $options:'i'} 
+      }
+    Song.find(obj).sort({rating:-1}).then(result=>{
         res.send({
             
             data:result
