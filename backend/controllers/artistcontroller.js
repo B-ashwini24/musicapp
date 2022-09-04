@@ -1,6 +1,4 @@
 
-
-
 const { Collection } = require("mongoose")
 const Artist=require("../models/artist")
 

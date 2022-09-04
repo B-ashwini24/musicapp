@@ -22,11 +22,18 @@ const Artist = () => {
   };
   const clickhander=()=>{
     console.log(info)
-    axios.post("http://localhost:9003/artist/save",info).then(res=>{
-      console.log("data added")
-    }).catch(err=>{
-      console.log(err)
-    })
+    if(info.Aname==="" )
+    {
+            alert("All fields required")
+   }
+    else
+    {
+          axios.post("http://localhost:9003/artist/save",info).then(res=>{
+            console.log("data added")
+          }).catch(err=>{
+            console.log(err)
+          })
+    }
   }
 
 
@@ -46,9 +53,9 @@ const Artist = () => {
     noValidate
     autoComplete="off"
   >
-  <label>Artist Name</label> <TextField id="outlined-basic" name="Aname" label="" variant="outlined" onChange={handleChange} /><br/>
+  <label>Artist Name</label> <TextField id="outlined-basic" name="Aname" label="artist name" variant="outlined" onChange={handleChange} required /><br/>
    <br/>
-   <label>Date of Birth</label> <input type='date' name="dob" onChange={handleChange}/><br/>
+   <label>Date of Birth</label> <input type='date' name="dob" onChange={handleChange} /><br/>
    <label>Bio</label><TextField
           id="outlined-multiline-flexible"
           label="Multiline"

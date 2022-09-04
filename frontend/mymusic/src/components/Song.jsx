@@ -67,16 +67,18 @@ const [personName, setPersonName] = React.useState([]);
   formdata.append("dor",info.dor)
   let str=""
   personName.map(ele=>{
-    let count=personName.length;
-        str+=ele
-        count=count-1
-        while(count!=0)
-        {
+    // let count=personName.length;
+         str+=ele
+        // count=count-1
+        // while(count!=0)
+        // {
           str+=","
-        }
+        // }
        
   })
+  str=str.slice(0,-1)
   console.log("str",str)
+
   formdata.append("Aname",str)
   formdata.append("rating",info.rating)
   

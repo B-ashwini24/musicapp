@@ -52,8 +52,8 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
 const Home = () => {
 
   const navigate=useNavigate()
-  const [data,setData]=useState([])
-  const [data1,setData1]=useState([])
+  const [songlist,setSonglist]=useState([])
+  const [artistlist,setArtistlist]=useState([])
   const [refresh,setRefresh]=useState(false)
   const [songs,setSongs]=useState([])
   const [value, setValue] = useState();
@@ -85,7 +85,7 @@ const handleChange=(e)=>{
 
 const artistdata=()=>{
  axios.get(`http://localhost:9003/artist/getsongs`).then(response=>{
-    setData1(response['data'].data)
+    setArtistlist(response['data'].data)
    
     
       
@@ -98,7 +98,7 @@ const artistdata=()=>{
 
     useEffect(()=>{
       axios.get(`http://localhost:9003/song/getdata/?name=${state.name}`).then(response=>{
-    setData(response['data'].data)
+    setSonglist(response['data'].data)
    // console.log(data)
 }).catch(err=>{
 console.log(err)
@@ -121,7 +121,7 @@ console.log(err)
       })
 
 
-      },[editdata,state,data])
+      },[editdata,state,songlist])
  
   
 
@@ -163,7 +163,7 @@ const changeHandler=(item_id,item_rating)=>{
          
         </TableHead>
         <TableBody>
-                {data.map((row) => (
+                {songlist.map((row) => (
                <TableRow>
               <Card sx={{ display:'flex',flexDirection:'row',marginLeft:'20px'}}>
      <CardActionArea>
@@ -217,7 +217,7 @@ const changeHandler=(item_id,item_rating)=>{
          
         </TableHead>
         <TableBody>
-        {data1.map((row1) => (
+        {artistlist.map((row1) => (
                <TableRow>
               
               <StyledTableCell align="center">{row1.Aname}</StyledTableCell>

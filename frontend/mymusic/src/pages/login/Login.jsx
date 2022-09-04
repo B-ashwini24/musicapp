@@ -46,6 +46,12 @@ const Login = () => {
         setValue({ ...value, [e.target.id]: e.target.value })
     }
     const Clickandelr = () => {
+        if( value.email==="" && value.password==="" )
+        {
+            alert("All fields required")
+        }
+        else
+        {
         axios.post("http://localhost:9003/auth/login", value).then((response) => {
             console.log(response.data)
             dispatch(storingUserInfo(response.data))
@@ -65,6 +71,7 @@ const Login = () => {
         }).catch((err) => {
             console.log(err)
         })
+     }
     }
 
 

@@ -43,23 +43,31 @@ const SignUp = () => {
     }
 
     const signUpHandeler = () => {
-        if (userDetail.password !== userDetail.repassword) {
-           alert("Password mismatched")
-        } else {
-            axios.post("http://localhost:9003/auth/register", userDetail).then((response) => {
-                console.log(response.data)
-                navigate('/')
-                setUserDetail({
-                    username: "",
-                    email: "",
-                    password: "",
-                    repassword: ""
-                })
-                alert("You can log in your account. your account is created")
-            }).catch((err) => {
-                console.log(err)
-            })
+        if(userDetail.username==="" && userDetail.email==="" && userDetail.password==="" && userDetail.repassword==="")
+        {
+            alert("All fields required")
         }
+        else
+        {
+            if (userDetail.password !== userDetail.repassword) {
+                alert("Password mismatched")
+             } else {
+                 axios.post("http://localhost:9003/auth/register", userDetail).then((response) => {
+                     console.log(response.data)
+                     navigate('/')
+                     setUserDetail({
+                         username: "",
+                         email: "",
+                         password: "",
+                         repassword: ""
+                     })
+                     alert("You can log in your account. your account is created")
+                 }).catch((err) => {
+                     console.log(err)
+                 })
+             }
+        }
+       
     }
 
     const handleSubmit = (event) => {
